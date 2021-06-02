@@ -1,5 +1,17 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <TryStore />
   </div>
 </template>
+
+<script lang="ts">
+import { Options, Vue } from "vue-class-component";
+import TryStore from "@/components/TryStore.vue"; // @ is an alias to /src
+
+@Options({
+  components: {
+    TryStore,
+  },
+})
+export default class Home extends Vue {}
+</script>
