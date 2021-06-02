@@ -9,15 +9,15 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { MutationTypes } from "../store/mutation-types";
-import { ActionTypes } from "../store/action-types";
+import { MutationTypes } from "../store/modules/counter/mutation-types";
+import { ActionTypes } from "../store/modules/counter/action-types";
 
 export default defineComponent({
   name: "OptionsAPIComponent",
   computed: {
     counter: {
       get() {
-        return this.$store.state.counter;
+        return this.$store.state.counter.counter;
       },
       set(value: number) {
         this.$store.commit(MutationTypes.SET_COUNTER, value);
