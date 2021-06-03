@@ -1,29 +1,16 @@
-import { ActionTree, ActionContext } from "vuex";
-import { State } from "./state";
-import { Mutations } from "./mutations";
-import { ActionTypes } from "./action-types";
-import { MutationTypes } from "./mutation-types";
+import { ActionTree } from "vuex";
+import { ActionsType, StateType } from "./types";
+import {
+  ActionNames,
+  MutationNames,
+} from "./types/actions-mutations-names-list";
 
-type AugmentedActionContext = {
-  commit<K extends keyof Mutations>(
-    key: K,
-    payload: Parameters<Mutations[K]>[1]
-  ): ReturnType<Mutations[K]>;
-} & Omit<ActionContext<State, State>, "commit">;
-
-export interface Actions {
-  [ActionTypes.GET_COUTNER](
-    { commit }: AugmentedActionContext,
-    payload: number
-  ): Promise<number>;
-}
-
-export const actions: ActionTree<State, State> & Actions = {
-  [ActionTypes.GET_COUTNER]({ commit }) {
+export const actions: ActionTree<StateType, StateType> & ActionsType = {
+  [ActionNames.GET_COUTNER_ASYNC]({ commit }) {
     return new Promise((resolve) => {
       setTimeout(() => {
         const data = 256;
-        commit(MutationTypes.SET_COUNTER, data);
+        commit(MutationNames.SET_COUNTER, data);
         resolve(data);
       }, 500);
     });

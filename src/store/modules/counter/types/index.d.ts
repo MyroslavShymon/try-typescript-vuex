@@ -1,5 +1,4 @@
-import { MutationTypes } from "../../mutation-types";
-
+import { Mutation } from "vuex";
 export interface MutationTree<S> {
-  [key: typeof MutationTypes]: Mutation<S>;
+  [key: number]: Mutation<S>;
 }

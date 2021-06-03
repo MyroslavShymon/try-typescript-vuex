@@ -1,11 +1,7 @@
 import { GetterTree } from "vuex";
-import { State } from "./state";
+import { GettersType, StateType } from "./types";
 
-export type Getters = {
-  doubledCounter(state: State): number;
-};
-
-export const getters: GetterTree<State, State> & Getters = {
+export const getters: GetterTree<StateType, StateType> & GettersType = {
   doubledCounter: (state) => {
     return state.counter * 2;
   },

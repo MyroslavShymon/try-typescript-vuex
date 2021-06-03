@@ -4,12 +4,13 @@ import {
   CommitOptions,
   DispatchOptions,
 } from "vuex";
-import { State, state } from "./state";
-import { Getters, getters } from "./getters";
-import { Mutations, mutations } from "./mutations";
-import { Actions, actions } from "./actions";
+import { state } from "./state";
+import { getters } from "./getters";
+import { mutations } from "./mutations";
+import { actions } from "./actions";
+import { ActionsType, GettersType, MutationsType, StateType } from "./types";
 
-export const counter: Module<State, any> = {
+export const counter: Module<StateType, any> = {
   state,
   getters,
   mutations,
@@ -17,22 +18,25 @@ export const counter: Module<State, any> = {
 };
 
 export type Store = Omit<
-  VuexStore<State>,
+  VuexStore<StateType>,
   "getters" | "commit" | "dispatch"
 > & {
-  commit<K extends keyof Mutations, P extends Parameters<Mutations[K]>[1]>(
+  commit<
+    K extends keyof MutationsType,
+    P extends Parameters<MutationsType[K]>[1]
+  >(
     key: K,
     payload: P,
     options?: CommitOptions
-  ): ReturnType<Mutations[K]>;
+  ): ReturnType<MutationsType[K]>;
 } & {
-  dispatch<K extends keyof Actions>(
+  dispatch<K extends keyof ActionsType>(
     key: K,
-    payload: Parameters<Actions[K]>[1],
+    payload: Parameters<ActionsType[K]>[1],
     options?: DispatchOptions
-  ): ReturnType<Actions[K]>;
+  ): ReturnType<ActionsType[K]>;
 } & {
   getters: {
-    [K in keyof Getters]: ReturnType<Getters[K]>;
+    [K in keyof GettersType]: ReturnType<GettersType[K]>;
   };
 };

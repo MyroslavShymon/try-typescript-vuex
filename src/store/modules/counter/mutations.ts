@@ -1,13 +1,10 @@
 import { MutationTree } from "vuex";
-import { MutationTypes } from "./mutation-types";
-import { State } from "./state";
 
-export type Mutations<S = State> = {
-  [MutationTypes.SET_COUNTER](state: S, payload: number): void;
-};
+import { MutationNames } from "./types/actions-mutations-names-list";
+import { MutationsType, StateType } from "./types";
 
-export const mutations: MutationTree<State> & Mutations = {
-  [MutationTypes.SET_COUNTER](state, payload: number) {
+export const mutations: MutationTree<StateType> & MutationsType = {
+  [MutationNames.SET_COUNTER](state, payload: number) {
     state.counter = payload;
   },
 };
