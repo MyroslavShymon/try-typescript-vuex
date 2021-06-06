@@ -13,7 +13,7 @@
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 import HelloWorld from "@/components/HelloWorld.vue";
-const Module = require("../../public/js/js_plumbing");
+const Module = require("../../dist/js/js_plumbing");
 
 const loadWasm = new Promise((resolve) => {
   Module({
